@@ -238,9 +238,9 @@ You can read a running/stopped container log with:
 docker logs <containerName>
 ```
 
-### [Section 1 - Troubleshooting](./readme-debug.md#section-1-local-database-and-containers)
+### [Section 1 - Troubleshooting](./debug.md#section-1-local-database-and-containers)
 
-Go [here](./readme-debug.md#section-1-local-database-and-containers) for troubleshooting.
+Go [here](./debug.md#section-1-local-database-and-containers) for troubleshooting.
 
 ---
 ---
@@ -390,4 +390,4 @@ curl --request GET --url http://localhost:8000/foo
 
 ## [Section 2 - Troubleshooting](./debug.md#section-2---using-compose-to-develop-locally)
 
-Go [here](./readme-debug.md#section-2---using-compose-to-develop-locally) for troubleshooting.
+Go [here](./debug.md#section-2---using-compose-to-develop-locally) for troubleshooting.
