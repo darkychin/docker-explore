@@ -1,0 +1,16 @@
+{
+  "name": "docker-explore",
+  "version": "0.0.1",
+  "description": "Docker exploration with node",
+  "license": "ISC",
+  "author": "Darky",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ronin-mocks": "^0.1.11",
+    "ronin-server": "^0.1.3"
+  }
+}

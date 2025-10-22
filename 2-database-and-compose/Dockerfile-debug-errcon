@@ -1,0 +1,23 @@
+# `debug-errcon` is created as a debug reference on mongdb error connection refused
+
+# ! Please make sure you are in root directory before running this file
+
+FROM node:12.18.1 
+
+# set up image working directory. and this is best practice
+# https://stackoverflow.com/questions/51066146/what-is-the-point-of-workdir-on-dockerfile
+WORKDIR /app
+
+# copy files from current directory to docker image
+COPY ./2-database-and-compose/package.json package.json
+COPY ./2-database-and-compose/package-lock.json package-lock.json
+
+# testing local node modules problem
+COPY ./2-database-and-compose/node_modules node_modules
+
+# commented to use the local node_modules
+# RUN npm install
+
+COPY ./2-database-and-compose/server.js .
+
+CMD ["node","server.js"]

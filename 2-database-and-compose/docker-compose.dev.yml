@@ -1,0 +1,44 @@
+# official doc for docker compose: https://docs.docker.com/reference/compose-file/
+
+# - about `version: 3.8` : https://stackoverflow.com/a/76157215/7939633
+# - `version` is deprecated (2025 September) and used for backward compatibility: https://docs.docker.com/reference/compose-file/version-and-name/#version-top-level-element-obsolete 
+version: '3.8'
+
+services:
+  # service name
+  notes:
+    build:
+      # context defines either a path to a directory containing a Dockerfile, or a URL to a Git repository: https://docs.docker.com/reference/compose-file/build/#context
+      context: .
+    ports:
+      - 8000:8000
+      # this port is for chrome debugger
+      - 9229:9229
+    environment:
+      # the `mongo` here is referring to `service: mongo` on the next section
+      - CONNECTIONSTRING=mongodb://mongo:27017/yoda_notes
+    # internal docker volume use by this service only: https://docs.docker.com/reference/compose-file/services/#volumes
+    volumes:
+      - ./:/code
+    # use to override `CMD` in `Dockerfile`
+    # read more on command:
+    # - https://docs.docker.com/reference/compose-file/services/#command
+    # - https://www.docker.com/blog/docker-best-practices-choosing-between-run-cmd-and-entrypoint/
+    command: npm run debug
+    # added from tutorial because the app might run before db is ready
+    # https://docs.docker.com/reference/compose-file/services/#depends_on
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.2.8
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+
+# sharable volume between services: https://docs.docker.com/reference/compose-file/volumes/
+volumes:
+  mongodb:
+  mongodb_config:
